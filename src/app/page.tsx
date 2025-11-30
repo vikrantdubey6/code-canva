@@ -168,7 +168,7 @@ export default function LandingPage() {
                   <p className="text-sm font-medium text-muted-foreground">10,000+ developers already collaborating</p>
                 </div>
               </div>
-              <div className="relative mt-16 h-full min-h-[300px] md:min-h-0 lg:mt-0">
+              <div className="relative h-full lg:mt-0">
                 <Image
                   src="https://picsum.photos/seed/hero-image/1200/800"
                   alt="Code editor with collaboration features"
@@ -222,7 +222,7 @@ export default function LandingPage() {
                 Get a feel for our powerful, real-time editor right here. No sign-up required.
               </p>
             </div>
-            <div className="mx-auto max-w-5xl h-auto md:h-[600px]">
+            <div className="mx-auto max-w-5xl h-auto md:h-[600px] aspect-video">
               <CodeEditor />
             </div>
           </div>
@@ -331,4 +331,5 @@ export default function LandingPage() {
 }
 
     
+
 
