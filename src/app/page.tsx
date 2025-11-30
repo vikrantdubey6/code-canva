@@ -1,7 +1,7 @@
 
 import { Logo } from '@/components/logo';
 import { Button } from '@/components/ui/button';
-import { ArrowRight, CheckCircle2, Play, UserPlus, Link as LinkIcon, Code, Rocket } from 'lucide-react';
+import { ArrowRight, Code, Github, Link as LinkIcon, Rocket, UserPlus, Play } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
@@ -57,6 +57,56 @@ const testimonials = [
   },
 ];
 
+const footerLinks = {
+  product: [
+    { name: 'Features', href: '#' },
+    { name: 'Pricing', href: '#' },
+    { name: 'Changelog', href: '#' },
+    { name: 'Roadmap', href: '#' },
+  ],
+  resources: [
+    { name: 'Documentation', href: '#' },
+    { name: 'API Reference', href: '#' },
+    { name: 'Blog', href: '#' },
+    { name: 'Community', href: '#' },
+  ],
+  company: [
+    { name: 'About', href: '#' },
+    { name: 'Careers', href: '#' },
+    { name: 'Contact', href: '#' },
+    { name: 'Press', href: '#' },
+  ],
+  legal: [
+    { name: 'Privacy', href: '#' },
+    { name: 'Terms', href: '#' },
+    { name: 'Security', href: '#' },
+  ],
+};
+
+
+const XIcon = (props: React.SVGProps<SVGSVGElement>) => (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 24 24"
+      fill="currentColor"
+      {...props}
+    >
+      <path d="M18.901 1.153h3.68l-8.04 9.19L24 22.846h-7.406l-5.8-7.584-6.638 7.584H.474l8.6-9.83L0 1.154h7.594l5.243 6.932L18.901 1.153Zm-1.653 19.33h2.61l-10.595-12.02L3.55 3.48H.94l10.84 12.333L20.48 20.483Z" />
+    </svg>
+  );
+  
+const DiscordIcon = (props: React.SVGProps<SVGSVGElement>) => (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 24 24"
+      fill="currentColor"
+      {...props}
+    >
+        <path d="M20.317 4.369a19.791 19.791 0 00-4.885-1.515.074.074 0 00-.079.037c-.21.352-.43.847-.608 1.252a18.331 18.331 0 00-5.484 0 11.022 11.022 0 00-.617-1.252.077.077 0 00-.079-.037A19.791 19.791 0 003.679 4.37a.07.07 0 00-.034.056c-.471 2.48-.973 6.136-1.182 8.875a.076.076 0 00.04.085c1.444.646 2.92.993 4.414 1.127a.08.08 0 00.08-.04c.262-.42.5-.87.718-1.326a.077.077 0 00-.046-.116c-.633-.245-1.23- .51-1.775-.818a.07.07 0 01-.048-.073c.013-.02.02-.041.03-.06a.063.063 0 01.04-.024c.017-.006.033-.01.05-.013.098-.032.2-.06.302-.087a.066.066 0 01.063.012c.94.697 2.13 1.24 3.75 1.548a.072.072 0 00.084-.04c.262-.42.5-.87.718-1.326a.077.077 0 00-.046-.116c-.633-.245-1.23-.51-1.775-.818a.07.07 0 01-.048-.073c.013-.02.02-.041.03-.06a.063.063 0 01.04-.024c.017-.006.033-.01.05-.013.098-.032.2-.06.302-.087a.066.066 0 01.063.012c1.62.308 2.81.85 3.75 1.548a.072.072 0 00.084-.04c.225.456.456.906.718 1.326a.08.08 0 00.08.04c1.494-.134 2.97-.48 4.414-1.126a.076.076 0 00.04-.085c-.209-2.74-.71-6.395-1.182-8.875a.07.07 0 00-.035-.056zM8.02 15.33c-1.183 0-2.14-1.074-2.14-2.392s.957-2.392 2.14-2.392c1.192 0 2.14 1.074 2.14 2.392s-.948 2.392-2.14 2.392zm7.96 0c-1.183 0-2.14-1.074-2.14-2.392s.957-2.392 2.14-2.392c1.192 0 2.14 1.074 2.14 2.392s-.948 2.392-2.14 2.392z" />
+    </svg>
+);
+  
+  
 export default function LandingPage() {
   return (
     <div className="flex min-h-screen flex-col bg-background text-foreground">
@@ -207,12 +257,67 @@ export default function LandingPage() {
           </div>
         </section>
       </main>
-      <footer className="border-t border-border/40 py-6">
-        <div className="container flex items-center justify-between">
-          <p className="text-sm text-muted-foreground">&copy; 2024 Code Canvas. All rights reserved.</p>
-          <Logo className="text-lg" />
+      <footer className="bg-background border-t border-border/40 text-muted-foreground">
+        <div className="container py-12">
+          <div className="grid grid-cols-1 md:grid-cols-5 gap-8">
+            <div className="md:col-span-2">
+                <Logo className="text-2xl" />
+                <p className="mt-4 text-sm max-w-xs">
+                    The real-time collaborative coding platform for modern development teams.
+                </p>
+                <div className="mt-6 flex space-x-4">
+                    <Link href="#" className="hover:text-foreground"><Github className="h-5 w-5" /></Link>
+                    <Link href="#" className="hover:text-foreground"><XIcon className="h-5 w-5" /></Link>
+                    <Link href="#" className="hover:text-foreground"><DiscordIcon className="h-5 w-5" /></Link>
+                </div>
+            </div>
+            <div>
+              <h3 className="font-headline font-semibold text-foreground">Product</h3>
+              <ul className="mt-4 space-y-2">
+                {footerLinks.product.map(link => (
+                  <li key={link.name}><Link href={link.href} className="text-sm hover:text-foreground">{link.name}</Link></li>
+                ))}
+              </ul>
+            </div>
+            <div>
+              <h3 className="font-headline font-semibold text-foreground">Resources</h3>
+              <ul className="mt-4 space-y-2">
+                {footerLinks.resources.map(link => (
+                  <li key={link.name}><Link href={link.href} className="text-sm hover:text-foreground">{link.name}</Link></li>
+                ))}
+              </ul>
+            </div>
+            <div>
+              <h3 className="font-headline font-semibold text-foreground">Company</h3>
+              <ul className="mt-4 space-y-2">
+                {footerLinks.company.map(link => (
+                  <li key={link.name}><Link href={link.href} className="text-sm hover:text-foreground">{link.name}</Link></li>
+                ))}
+              </ul>
+            </div>
+            <div>
+              <h3 className="font-headline font-semibold text-foreground">Legal</h3>
+              <ul className="mt-4 space-y-2">
+                {footerLinks.legal.map(link => (
+                  <li key={link.name}><Link href={link.href} className="text-sm hover:text-foreground">{link.name}</Link></li>
+                ))}
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div className="container py-6 border-t border-border/40 flex items-center justify-between">
+          <p className="text-sm">&copy; 2025 Code Canvas. All rights reserved.</p>
+          <div className="flex items-center gap-2 text-sm">
+            <span className="relative flex h-2 w-2">
+              <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-green-400 opacity-75"></span>
+              <span className="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span>
+            </span>
+            All systems operational
+          </div>
         </div>
       </footer>
     </div>
   );
 }
+
+    
