@@ -1,32 +1,38 @@
+
 import { Logo } from '@/components/logo';
 import { Button } from '@/components/ui/button';
-import { ArrowRight, CheckCircle2, Play } from 'lucide-react';
+import { ArrowRight, CheckCircle2, Play, UserPlus, Link as LinkIcon, Code, Rocket } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Badge } from '@/components/ui/badge';
 import { Card, CardContent } from '@/components/ui/card';
+import { Header } from '@/components/layout/header';
 
 const roadmapSteps = [
   {
     step: '01',
     title: 'Create your account',
     description: 'Sign up in seconds with Google, GitHub, or email. Your workspace is ready immediately.',
+    icon: UserPlus,
   },
   {
     step: '02',
     title: 'Start or join a session',
     description: 'Create a new coding session or join an existing one with a unique room link.',
+    icon: LinkIcon,
   },
   {
     step: '03',
     title: 'Code together in real-time',
     description: "Write code simultaneously, see each other's cursors, and communicate via chat or video.",
+    icon: Code,
   },
   {
     step: '04',
     title: 'Ship with confidence',
     description: 'Test your code instantly, review changes together, and deploy faster than ever.',
+    icon: Rocket,
   },
 ];
 
@@ -53,26 +59,8 @@ const testimonials = [
 
 export default function LandingPage() {
   return (
-    <div className="flex min-h-screen flex-col bg-background dark">
-      <header className="sticky top-0 z-50 w-full border-b border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-        <div className="container flex h-14 max-w-screen-2xl items-center">
-          <div className="mr-4 hidden md:flex">
-            <Logo />
-          </div>
-          <div className="flex flex-1 items-center justify-between space-x-2 md:justify-end">
-            <nav className="flex items-center">
-              <Button variant="ghost" asChild>
-                <Link href="/login">Sign In</Link>
-              </Button>
-              <Button asChild>
-                <Link href="/login">
-                  Get Started <ArrowRight className="ml-2 h-4 w-4" />
-                </Link>
-              </Button>
-            </nav>
-          </div>
-        </div>
-      </header>
+    <div className="flex min-h-screen flex-col bg-background text-foreground">
+      <Header />
       <main className="flex-1">
         <section className="relative py-20 md:py-32 lg:py-40">
           <div className="absolute inset-0 bg-grid-pattern opacity-10"></div>
@@ -147,34 +135,46 @@ export default function LandingPage() {
               <h2 className="font-headline text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">Get started in minutes</h2>
               <p className="mt-4 text-muted-foreground md:text-xl/relaxed">From sign-up to shipping code together—it only takes a few simple steps.</p>
             </div>
-            <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-4">
-              {roadmapSteps.map((step) => (
-                <div key={step.step} className="relative flex flex-col items-start rounded-lg border border-transparent bg-card/50 p-6 transition-all hover:border-primary/50 hover:bg-card">
-                  <div className="absolute right-6 top-6 -z-10 text-6xl font-black text-primary/10">{step.step}</div>
-                  <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-lg bg-primary/10 text-primary">
-                    <CheckCircle2 className="h-6 w-6" />
+            
+            <div className="relative">
+              <div className="absolute left-1/2 top-0 bottom-0 w-px -translate-x-1/2 bg-border/20" aria-hidden="true"></div>
+              <div className="space-y-16">
+                {roadmapSteps.map((step, index) => (
+                  <div key={step.step} className="relative flex items-center justify-center">
+                    <div className={`flex w-full items-center gap-8 lg:gap-16 ${index % 2 === 1 ? 'flex-row-reverse' : ''}`}>
+                      <div className="w-1/2">
+                        <div className="flex flex-col items-start gap-4">
+                          <h3 className="font-headline text-2xl font-bold">{step.title}</h3>
+                          <p className="text-muted-foreground">{step.description}</p>
+                        </div>
+                      </div>
+                      <div className="w-1/2"></div>
+                    </div>
+                    <div className="absolute left-1/2 top-1/2 z-10 flex h-16 w-16 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full border-4 border-background bg-secondary">
+                      <step.icon className="h-6 w-6 text-primary" />
+                      <div className="absolute top-1/2 -translate-y-1/2 text-8xl font-bold text-secondary-foreground/5 opacity-50 ${index % 2 === 1 ? '-left-20' : '-right-20'}">{step.step}</div>
+                    </div>
                   </div>
-                  <h3 className="mb-2 font-headline text-xl font-bold">{step.title}</h3>
-                  <p className="text-sm text-muted-foreground">{step.description}</p>
-                </div>
-              ))}
+                ))}
+              </div>
             </div>
+
           </div>
         </section>
 
         <section id="testimonials" className="w-full py-16 md:py-24 lg:py-32">
           <div className="container">
             <div className="mx-auto mb-16 max-w-3xl text-center">
-              <h2 className="font-headline text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">Loved by developers worldwide</h2>
-              <p className="mt-4 text-muted-foreground md:text-xl/relaxed">Don't just take our word for it. Here's what developers are saying about Code Canvas.</p>
+              <h2 className="font-headline text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">What Our Users Are Saying</h2>
+              <p className="mt-4 text-muted-foreground md:text-xl/relaxed">Discover why top developers at leading companies choose Code Canvas for collaboration.</p>
             </div>
             <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
               {testimonials.map((testimonial) => (
-                <Card key={testimonial.name} className="flex flex-col justify-between">
+                <Card key={testimonial.name} className="flex flex-col justify-between overflow-hidden border-border/50 bg-card/50 transition-all hover:shadow-lg hover:border-primary/50">
                   <CardContent className="p-6">
-                    <blockquote className="text-lg text-foreground">"{testimonial.testimonial}"</blockquote>
+                    <blockquote className="text-lg text-foreground italic">"{testimonial.testimonial}"</blockquote>
                   </CardContent>
-                  <div className="flex items-center gap-4 border-t bg-secondary/30 px-6 py-4">
+                  <div className="flex items-center gap-4 border-t border-border/30 bg-secondary/20 px-6 py-4">
                     <Avatar>
                       <AvatarImage src={testimonial.avatar} alt={testimonial.name} data-ai-hint="person" />
                       <AvatarFallback>{testimonial.name.charAt(0)}</AvatarFallback>
