@@ -1,4 +1,5 @@
 
+
 import { Logo } from '@/components/logo';
 import { Button } from '@/components/ui/button';
 import { ArrowRight, Code, Github, Link as LinkIcon, Rocket, UserPlus, Play } from 'lucide-react';
@@ -8,6 +9,7 @@ import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Badge } from '@/components/ui/badge';
 import { Card, CardContent } from '@/components/ui/card';
 import { Header } from '@/components/layout/header';
+import CodeEditor from '@/components/editor/code-editor';
 
 const roadmapSteps = [
   {
@@ -209,6 +211,20 @@ export default function LandingPage() {
               </div>
             </div>
 
+          </div>
+        </section>
+
+        <section id="try-it" className="w-full py-16 md:py-24 lg:py-32">
+          <div className="container">
+            <div className="mx-auto mb-16 max-w-3xl text-center">
+              <h2 className="font-headline text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">Try Code Canvas Now</h2>
+              <p className="mt-4 text-muted-foreground md:text-xl/relaxed">
+                Get a feel for our powerful, real-time editor right here. No sign-up required.
+              </p>
+            </div>
+            <div className="mx-auto max-w-5xl h-[600px]">
+              <CodeEditor />
+            </div>
           </div>
         </section>
 
