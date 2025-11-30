@@ -1,6 +1,7 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
+import Editor from '@monaco-editor/react';
 import { Bot, Code, Play, Sparkles, Terminal } from 'lucide-react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
@@ -24,6 +25,7 @@ import {
     SelectTrigger,
     SelectValue,
   } from "@/components/ui/select";
+import { useTheme } from 'next-themes';
   
 const codeSnippets = {
   javascript: `import React from 'react';
@@ -99,10 +101,15 @@ export default function CodeEditor() {
   const [isExecutionLoading, setIsExecutionLoading] = useState(false);
   const [executionResult, setExecutionResult] = useState('');
   const { toast } = useToast();
+  const { theme } = useTheme();
 
   const handleLanguageChange = (selectedLanguage: string) => {
     setLanguage(selectedLanguage);
     setCode(codeSnippets[selectedLanguage as keyof typeof codeSnippets]);
+  };
+
+  const handleCodeChange = (value: string | undefined) => {
+    setCode(value || '');
   };
 
   const handleExplainCode = async () => {
@@ -160,14 +167,13 @@ export default function CodeEditor() {
     }
   };
 
-  const lineCount = code.split('\n').length;
 
   return (
     <Card className="h-full flex flex-col">
       <CardHeader className="flex flex-col md:flex-row items-start md:items-center justify-between gap-4 border-b">
         <div className="flex items-center gap-2">
             <Code className="h-5 w-5 text-muted-foreground"/>
-            <CardTitle className="text-lg font-medium font-sans">app.tsx</CardTitle>
+            <CardTitle className="text-lg font-medium font-sans">app.{language === 'python' ? 'py' : 'tsx'}</CardTitle>
         </div>
         <div className="flex flex-wrap items-center gap-2">
         <Select value={language} onValueChange={handleLanguageChange}>
@@ -231,32 +237,20 @@ export default function CodeEditor() {
         </div>
       </CardHeader>
       <CardContent className="flex-1 p-0 relative flex flex-col overflow-hidden">
-        <div className="flex flex-1 font-code text-sm overflow-hidden">
-          <div className="w-12 select-none bg-muted/50 p-2 text-right text-muted-foreground overflow-y-auto">
-            {Array.from({ length: lineCount }, (_, i) => (
-              <div key={i}>{i + 1}</div>
-            ))}
-          </div>
-          <div className="relative flex-1">
-            <textarea
+        <div className="flex-1 font-code text-sm overflow-hidden">
+           <Editor
+              height="100%"
+              language={language}
+              theme={theme === 'dark' ? 'vs-dark' : 'light'}
               value={code}
-              onChange={(e) => setCode(e.target.value)}
-              spellCheck="false"
-              className="absolute inset-0 h-full w-full resize-none border-0 bg-transparent p-2 font-code text-transparent caret-foreground outline-none"
+              onChange={handleCodeChange}
+              options={{
+                minimap: { enabled: false },
+                fontSize: 14,
+                wordWrap: 'on',
+                scrollBeyondLastLine: false,
+              }}
             />
-             <pre className="pointer-events-none h-full w-full overflow-auto p-2">
-                <code
-                    dangerouslySetInnerHTML={{
-                    __html: code
-                        .replace(/</g, '&lt;')
-                        .replace(/>/g, '&gt;')
-                        .replace(/(import|from|function|const|return|export|default|console|def|class|public|static|void)/g, '<span class="text-primary font-semibold">$1</span>')
-                        .replace(/(\/\/.+)|(#.+)/g, '<span class="text-green-600">$1</span>')
-                        .replace(/(['"].+['"])/g, '<span class="text-accent-foreground/80">$1</span>'),
-                    }}
-                />
-            </pre>
-          </div>
         </div>
         {(isExecutionLoading || executionResult) && (
           <div className="flex-1 border-t max-h-1/3">
