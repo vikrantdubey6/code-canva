@@ -17,7 +17,14 @@ import { getCodeCompletionSuggestions } from '@/ai/flows/code-completion-suggest
 import { executeCode } from '@/ai/flows/code-execution';
 import { useToast } from '@/hooks/use-toast';
 import { ScrollArea } from '../ui/scroll-area';
-
+import {
+    Select,
+    SelectContent,
+    SelectItem,
+    SelectTrigger,
+    SelectValue,
+  } from "@/components/ui/select";
+  
 const initialCode = `import React from 'react';
 
 function HelloWorld() {
@@ -37,8 +44,16 @@ function HelloWorld() {
 export default HelloWorld;
 `;
 
+const languages = [
+    { value: 'javascript', label: 'JavaScript' },
+    { value: 'python', label: 'Python' },
+    { value: 'typescript', label: 'TypeScript' },
+    { value: 'java', label: 'Java' },
+];
+
 export default function CodeEditor() {
   const [code, setCode] = useState(initialCode);
+  const [language, setLanguage] = useState('javascript');
   const [explanation, setExplanation] = useState('');
   const [suggestions, setSuggestions] = useState<string[]>([]);
   const [isExplanationLoading, setIsExplanationLoading] = useState(false);
@@ -68,7 +83,7 @@ export default function CodeEditor() {
   const handleGetSuggestions = async () => {
     setIsSuggestionLoading(true);
     try {
-      const result = await getCodeCompletionSuggestions({ codeContext: code, language: 'typescript' });
+      const result = await getCodeCompletionSuggestions({ codeContext: code, language });
       setSuggestions(result.suggestions);
     } catch (error) {
       console.error('Error getting suggestions:', error);
@@ -87,7 +102,7 @@ export default function CodeEditor() {
     setIsExecutionLoading(true);
     setExecutionResult('');
     try {
-      const result = await executeCode({ code, language: 'javascript' });
+      const result = await executeCode({ code, language });
       setExecutionResult(result.output);
     } catch (error) {
       console.error('Error executing code:', error);
@@ -112,6 +127,18 @@ export default function CodeEditor() {
             <CardTitle className="text-lg font-medium font-sans">app.tsx</CardTitle>
         </div>
         <div className="flex items-center gap-2">
+        <Select value={language} onValueChange={setLanguage}>
+            <SelectTrigger className="w-[140px]">
+                <SelectValue placeholder="Select Language" />
+            </SelectTrigger>
+            <SelectContent>
+                {languages.map((lang) => (
+                    <SelectItem key={lang.value} value={lang.value}>
+                        {lang.label}
+                    </SelectItem>
+                ))}
+            </SelectContent>
+        </Select>
           <Dialog>
             <DialogTrigger asChild>
               <Button variant="outline" size="sm" onClick={handleExplainCode}>
