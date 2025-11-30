@@ -230,9 +230,9 @@ export default function CodeEditor() {
           </Button>
         </div>
       </CardHeader>
-      <CardContent className="flex-1 p-0 relative flex flex-col">
-        <div className="flex h-2/3 font-code text-sm">
-          <div className="w-12 select-none bg-muted/50 p-2 text-right text-muted-foreground">
+      <CardContent className="flex-1 p-0 relative flex flex-col overflow-hidden">
+        <div className="flex flex-1 font-code text-sm overflow-hidden">
+          <div className="w-12 select-none bg-muted/50 p-2 text-right text-muted-foreground overflow-y-auto">
             {Array.from({ length: lineCount }, (_, i) => (
               <div key={i}>{i + 1}</div>
             ))}
@@ -259,7 +259,7 @@ export default function CodeEditor() {
           </div>
         </div>
         {(isExecutionLoading || executionResult) && (
-          <div className="flex-1 border-t">
+          <div className="flex-1 border-t max-h-1/3">
             <div className="flex h-full flex-col">
               <div className="flex items-center gap-2 border-b bg-muted/50 px-4 py-2">
                 <Terminal className="h-5 w-5 text-muted-foreground" />

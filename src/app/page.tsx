@@ -75,7 +75,7 @@ const footerLinks = {
   company: [
     { name: 'About', href: '#' },
     { name: 'Careers', href: '#' },
-    { name: 'Contact', href: '#' },
+    { name: 'Contact', href: '/contact' },
     { name: 'Press', href: '#' },
   ],
   legal: [
@@ -222,7 +222,7 @@ export default function LandingPage() {
                 Get a feel for our powerful, real-time editor right here. No sign-up required.
               </p>
             </div>
-            <div className="mx-auto max-w-5xl h-auto md:h-[600px] aspect-video">
+            <div className="mx-auto max-w-5xl h-[400px] md:h-[600px]">
               <CodeEditor />
             </div>
           </div>
@@ -331,5 +331,6 @@ export default function LandingPage() {
 }
 
     
+
 
 
