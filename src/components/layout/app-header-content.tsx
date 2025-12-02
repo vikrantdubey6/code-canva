@@ -1,20 +1,21 @@
-'use client';
+// compiler navbar
+"use client";
 
-import { useSidebar } from '@/components/ui/sidebar';
-import NotificationCenter from '@/components/notifications/notification-center';
-import UserNav from './user-nav';
-import { ThemeToggle } from '../theme-toggle';
+import { useSidebar } from "@/components/ui/sidebar";
+import NotificationCenter from "@/components/notifications/notification-center";
+import UserNav from "./user-nav";
+import { ThemeToggle } from "../theme-toggle";
 
 export default function AppHeaderContent() {
   const { isMobile } = useSidebar();
 
   if (isMobile) {
     return (
-        <div className="flex w-full items-center justify-end gap-2">
-            <ThemeToggle />
-            <NotificationCenter />
-            <UserNav />
-        </div>
+      <div className="flex w-full items-center justify-end gap-2">
+        <ThemeToggle />
+        <NotificationCenter />
+        <UserNav />
+      </div>
     );
   }
 

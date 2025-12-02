@@ -12,10 +12,11 @@ import Image from "next/image";
 import Link from "next/link";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Badge } from "@/components/ui/badge";
-import { Card, CardContent } from "@/components/ui/card";
 import { Header } from "@/components/layout/header";
 import CodeEditor from "@/components/editor/code-editor";
 import Footer from "@/components/Footer/Footer";
+import { AnimatedTestimonialsDemo } from "@/components/Testimonals/Testimonials";
+
 const roadmapSteps = [
   {
     step: "01",
@@ -44,30 +45,6 @@ const roadmapSteps = [
     description:
       "Test your code instantly, review changes together, and deploy faster than ever.",
     icon: Rocket,
-  },
-];
-
-const testimonials = [
-  {
-    name: "Sarah Dayan",
-    role: "Staff Engineer, Algolia",
-    avatar: "https://picsum.photos/seed/s/40/40",
-    testimonial:
-      "Code Canvas has revolutionized our team's workflow. The real-time collaboration is seamless, and it has drastically cut down our code review time. It's a game-changer for remote teams.",
-  },
-  {
-    name: "Evan You",
-    role: "Creator of Vue.js",
-    avatar: "https://picsum.photos/seed/e/40/40",
-    testimonial:
-      "The integration of a powerful code editor with communication tools is brilliant. I can jump into a session and start pair programming instantly without any setup friction. Highly recommended!",
-  },
-  {
-    name: "Guillermo Rauch",
-    role: "CEO, Vercel",
-    avatar: "https://picsum.photos/seed/g/40/40",
-    testimonial:
-      "A truly modern development environment. The performance is top-notch, and the UI is intuitive. Code Canvas is setting a new standard for collaborative coding platforms.",
   },
 ];
 
@@ -234,54 +211,7 @@ export default function LandingPage() {
           </div>
         </section>
 
-        {/* Testimonials */}
-        <section id="testimonials" className="w-full py-16 md:py-24 lg:py-32">
-          <div className="container">
-            <div className="mx-auto mb-16 max-w-3xl text-center">
-              <h2 className="font-headline text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">
-                What Our Users Are Saying
-              </h2>
-              <p className="mt-4 text-muted-foreground md:text-xl/relaxed">
-                Discover why top developers at leading companies choose Code
-                Canvas for collaboration.
-              </p>
-            </div>
-            <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
-              {testimonials.map((testimonial) => (
-                <Card
-                  key={testimonial.name}
-                  className="flex flex-col justify-between overflow-hidden border-border/50 bg-card/50 transition-all hover:shadow-lg hover:border-primary/50"
-                >
-                  <CardContent className="p-6">
-                    <blockquote className="text-lg text-foreground italic">
-                      "{testimonial.testimonial}"
-                    </blockquote>
-                  </CardContent>
-                  <div className="flex items-center gap-4 border-t border-border/30 bg-secondary/20 px-6 py-4">
-                    <Avatar>
-                      <AvatarImage
-                        src={testimonial.avatar}
-                        alt={testimonial.name}
-                        data-ai-hint="person"
-                      />
-                      <AvatarFallback>
-                        {testimonial.name.charAt(0)}
-                      </AvatarFallback>
-                    </Avatar>
-                    <div>
-                      <p className="font-semibold text-foreground">
-                        {testimonial.name}
-                      </p>
-                      <p className="text-sm text-muted-foreground">
-                        {testimonial.role}
-                      </p>
-                    </div>
-                  </div>
-                </Card>
-              ))}
-            </div>
-          </div>
-        </section>
+        <AnimatedTestimonialsDemo />
 
         <section className="py-24 md:py-32">
           <div className="container text-center">
