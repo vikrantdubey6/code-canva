@@ -1,6 +1,7 @@
-import Link from 'next/link';
-import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
-import { Button } from '@/components/ui/button';
+// compiler sidebar userNav code
+import Link from "next/link";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -9,22 +10,24 @@ import {
   DropdownMenuLabel,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
-} from '@/components/ui/dropdown-menu';
-import { CreditCard, LogOut, Settings, User } from 'lucide-react';
-import placeholderImages from '@/lib/placeholder-images.json';
+} from "@/components/ui/dropdown-menu";
+import { CreditCard, LogOut, Settings, User } from "lucide-react";
+import placeholderImages from "@/lib/placeholder-images.json";
 
 export default function UserNav() {
-  const userAvatar = placeholderImages.placeholderImages.find(p => p.id === 'user-avatar-1');
+  const userAvatar = placeholderImages.placeholderImages.find(
+    (p) => p.id === "user-avatar-1"
+  );
 
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
         <Button variant="ghost" className="relative h-8 w-8 rounded-full">
           <Avatar className="h-9 w-9">
-            <AvatarImage 
-              src={userAvatar?.imageUrl} 
-              alt="@shadcn" 
-              data-ai-hint={userAvatar?.imageHint} 
+            <AvatarImage
+              src={userAvatar?.imageUrl}
+              alt="@shadcn"
+              data-ai-hint={userAvatar?.imageHint}
             />
             <AvatarFallback>SC</AvatarFallback>
           </Avatar>
