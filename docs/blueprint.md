@@ -1,4 +1,4 @@
-# **App Name**: Code Canvas
+# 📘 Code Canva – AI-Powered Collaborative Coding Workspace
 
 ## Core Features:
 
@@ -18,3 +18,37 @@
 - Use a consistent set of icons throughout the platform. Icons should be simple, modern, and related to coding or collaboration.
 - A clean and intuitive layout with a focus on the code editor as the central element.
 - Subtle animations for real-time updates and notifications to provide a dynamic user experience.
+
+---
+
+## 🧩 Tech Stack
+
+- **Next.js 14+** (App Router)
+- **Tailwind CSS v4**
+- **TypeScript**
+- **shadcn/ui**
+- **Genkit** (AI Flows)
+- **Vercel-ready deployment**
+
+---
+
+## 🛠️ Installation
+
+Install dependencies:
+
+```bash
+npm install
+# or
+yarn
+# or
+pnpm install
+```
+
+## 🎨 Theme support
+
+Theme switching is handled via:
+
+`src/components/theme-provider.tsx`
+`src/components/theme-toggle.tsx`
+
+Fully compatible with Tailwind’s dark mode.
