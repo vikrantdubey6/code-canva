@@ -1,3 +1,6 @@
+export const runtime = "nodejs";
+export const dynamic = "force-dynamic";
+
 import { prisma } from "@/lib/prisma";
 import { auth, currentUser } from "@clerk/nextjs/server";
 
@@ -13,7 +16,7 @@ export async function POST(req: Request) {
     // Ensure the user exists in the local database before adding them to a team
     const email = clerkUser.emailAddresses[0]?.emailAddress ?? "";
     const username = clerkUser.username ?? clerkUser.firstName ?? "User";
-    
+
     await prisma.user.upsert({
       where: { id: userId },
       update: { email, username },
@@ -22,7 +25,7 @@ export async function POST(req: Request) {
         email,
         username,
         passwordHash: "clerk_auth", // Required by schema
-      }
+      },
     });
 
     const { inviteId } = await req.json();
