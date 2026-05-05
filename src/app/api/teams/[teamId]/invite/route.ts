@@ -1,3 +1,6 @@
+export const runtime = "nodejs";
+export const dynamic = "force-dynamic";
+
 import { prisma } from "@/lib/prisma";
 import { auth } from "@clerk/nextjs/server";
 
