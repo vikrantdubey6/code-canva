@@ -1,3 +1,6 @@
+export const runtime = "nodejs";
+export const dynamic = "force-dynamic";
+
 // app/api/teams/route.ts
 import { prisma } from "@/lib/prisma";
 import { auth, currentUser } from "@clerk/nextjs/server";
@@ -14,7 +17,6 @@ export async function POST(req: Request) {
     // Ensure the user exists in the local database
     const email = clerkUser.emailAddresses[0]?.emailAddress ?? "";
     const username = clerkUser.username ?? clerkUser.firstName ?? "User";
-    
     await prisma.user.upsert({
       where: { id: userId },
       update: { email, username },
@@ -23,7 +25,7 @@ export async function POST(req: Request) {
         email,
         username,
         passwordHash: "clerk_auth", // Required by schema
-      }
+      },
     });
 
     const { name, slug } = await req.json();
@@ -58,7 +60,10 @@ export async function POST(req: Request) {
     return Response.json(team);
   } catch (err) {
     console.error("Error creating team:", err);
-    return Response.json({ error: "Something went wrong", details: String(err) }, { status: 500 });
+    return Response.json(
+      { error: "Something went wrong", details: String(err) },
+      { status: 500 },
+    );
   }
 }
 
